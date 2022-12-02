@@ -1,0 +1,17 @@
+elves = []
+current_elve = []
+File.readlines('arrays').each do |line|
+  if line.chomp.empty?
+    elves << current_elve.clone
+    current_elve = []
+  else
+    current_elve << line.to_i
+  end
+end
+
+elves_tops = elves.map do |elve|
+  elve.sum
+end
+
+elves_tops.sort!
+puts elves_tops[-3..].sum
