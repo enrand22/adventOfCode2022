@@ -1,0 +1,12 @@
+@value = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+          'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',]
+
+total = 0
+File.readlines('rucksacks').each do |rucksack|
+  container1 = rucksack[0..(rucksack.length / 2 - 1)].chars
+  container2 = rucksack[(rucksack.length / 2)..(rucksack.length - 1)].chars
+
+  dp_item = container1.select {|item| container2.include? item}
+  total += (@value.index(dp_item[0]) + 1)
+end
+puts total

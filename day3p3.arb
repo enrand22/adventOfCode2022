@@ -1,0 +1,21 @@
+@value = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+  'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',]
+
+rucksacks = []
+File.readlines('rucksacks').each do |rucksack|
+  rucksacks << rucksack.chars
+end
+groups = rucksacks.each_slice(3).to_a
+
+def ret_triplicate(group)
+  dp_items = group[0].select {|item| group[1].include? item}
+  dp2_items = dp_items.select {|item| group[2].include? item}
+  dp2_items[0]
+end
+
+total = 0
+for group in groups
+  dp_item = ret_triplicate(group)
+  total += (@value.index(dp_item[0]) + 1)
+end
+puts total
