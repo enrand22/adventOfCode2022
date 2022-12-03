@@ -14,4 +14,4 @@ elves_tops = elves.map do |elve|
 end
 
 elves_tops.sort!
-puts elves_tops[-3..].sum
+puts elves_tops[-3..]

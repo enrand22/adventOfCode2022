@@ -1,0 +1,41 @@
+@o_rock    = 'A'
+@o_paper   = 'B'
+@o_scissor = 'C'
+
+@rock    = 'X'
+@paper   = 'Y'
+@scissor = 'Z'
+
+values = {
+  'X' => 1,
+  'Y' => 2,
+  'Z' => 3
+}
+
+def calc_win(you, opponent)
+  if    you == @rock    && opponent == @o_paper
+    0
+  elsif you == @rock    && opponent == @o_scissor
+    6
+  elsif you == @paper   && opponent == @o_rock
+    6
+  elsif you == @paper   && opponent == @o_scissor
+    0
+  elsif you == @scissor && opponent == @o_paper
+    6
+  elsif you == @scissor && opponent == @o_rock
+    0
+  else
+    3
+  end
+end
+
+total = 0
+File.readlines('rpc').each do |match|
+  opponent = match[0]
+  you      = match[2]
+
+  total += values[you] + calc_win(you, opponent)
+end
+
+puts total

@@ -1,0 +1,64 @@
+@rock    = 'A'
+@paper   = 'B'
+@scissor = 'C'
+
+@win    = 'X'
+@draw   = 'Y'
+@lose   = 'Z'
+
+values = {
+  'A' => 1,
+  'B' => 2,
+  'C' => 3
+}
+
+@win_matches = {
+  'B' => 'A',
+  'C' => 'B',
+  'A' => 'C'
+}
+
+@lose_matches = {
+  'A' => 'B',
+  'B' => 'C',
+  'C' => 'A'
+}
+
+def calc_win(you, opponent)
+  if    you == @rock    && opponent == @paper
+    0
+  elsif you == @rock    && opponent == @scissor
+    6
+  elsif you == @paper   && opponent == @rock
+    6
+  elsif you == @paper   && opponent == @scissor
+    0
+  elsif you == @scissor && opponent == @paper
+    6
+  elsif you == @scissor && opponent == @rock
+    0
+  else
+    3
+  end
+end
+
+def choose_round(opponent, result)
+  if result == @win
+    @win_matches[opponent]
+  elsif result == @lose
+    @lose_matches[opponent]
+  else
+    opponent
+  end
+end
+
+total = 0
+File.readlines('rpc').each do |match|
+  opponent = match[0]
+  result   = match[2]
+  you      = choose_round(opponent, result)
+
+  total += values[you] + calc_win(you, opponent)
+end
+
+puts total
