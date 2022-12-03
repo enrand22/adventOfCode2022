@@ -25,21 +25,9 @@ values = {
 }
 
 def calc_win(you, opponent)
-  if    you == @rock    && opponent == @paper
-    0
-  elsif you == @rock    && opponent == @scissor
-    6
-  elsif you == @paper   && opponent == @rock
-    6
-  elsif you == @paper   && opponent == @scissor
-    0
-  elsif you == @scissor && opponent == @paper
-    6
-  elsif you == @scissor && opponent == @rock
-    0
-  else
-    3
-  end
+  return 0 if (you == @rock && opponent == @paper)   ||  (you == @paper && opponent == @scissor) || (you == @scissor && opponent == @rock)
+  return 6 if (you == @rock && opponent == @scissor) ||  (you == @paper && opponent == @rock)    || (you == @scissor && opponent == @paper)
+  3
 end
 
 def choose_round(opponent, result)

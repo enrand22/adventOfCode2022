@@ -13,21 +13,9 @@ values = {
 }
 
 def calc_win(you, opponent)
-  if    you == @rock    && opponent == @o_paper
-    0
-  elsif you == @rock    && opponent == @o_scissor
-    6
-  elsif you == @paper   && opponent == @o_rock
-    6
-  elsif you == @paper   && opponent == @o_scissor
-    0
-  elsif you == @scissor && opponent == @o_paper
-    6
-  elsif you == @scissor && opponent == @o_rock
-    0
-  else
-    3
-  end
+  return 0 if (you == @rock && opponent == @o_paper)   || (you == @paper && opponent == @o_scissor) || (you == @scissor && opponent == @o_rock)
+  return 6 if (you == @rock && opponent == @o_scissor) || (you == @paper   && opponent == @o_rock)  || (you == @scissor && opponent == @o_paper)
+  3
 end
 
 total = 0
